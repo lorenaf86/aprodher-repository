@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar id="mainmenubar">
+            
+                <p:menuitem value="#{bundle['label.home']}" outcome="/index" icon="ui-icon-home"/>
+                                
+                <f:facet name="options">
+                    <h:outputLink id="loginLink" value="javascript:void(0)"  
+                               title="#{bundle['login.login']}"
+                             onclick="PF('loginDlg').show()"
+                            rendered="#{not loggedIn and localLoggedIn}">
+                        <p:graphicImage value="/resources/img/login.png" />
+                    </h:outputLink>
+                    <p:commandButton id="logout" icon="ui-icon-extlink" 
+                                  value="#{bundle['login.logout']}" ajax="false"  
+                                 action="#{loginController.logout}" 
+                               rendered="#{loggedIn and localLoggedIn}" />
+                    <p:commandButton id="close" icon="ui-icon-extlink" 
+                                  value="#{bundle['btn.close']}" ajax="false"  
+                                 action="#{loginController.logout}" rendered="false" />
+                </f:facet>
+                                
+            </p:menubar>
+        </h:form>
+        
+            <p:dialog id="logindialog" header="Login" widgetVar="loginDlg">  
+                <h:form id="loginform">  
+                    <h:panelGrid columns="2" cellpadding="5">  
+
+                        <h:outputLabel for="username" value="#{bundle['login.username']}:" />  
+                        <p:inputText value="#{credentials.username}"   
+                                id="username" required="true" label="username" />  
+                          
+                        <h:outputLabel for="password" value="#{bundle['login.password']}:" />  
+                        <h:inputSecret id="password" label="password"   
+                                    value="#{credentials.password}" required="true" />  
+                          
+                        <f:facet name="footer">  
+                            <p:commandButton id="loginButton" value="Login" 
+                                         update=":growl :menuForm:mainmenubar"   
+                                 actionListener="#{login.login}"   
+                                     oncomplete="handleLoginRequest(xhr, status, args)"/>  
+                        </f:facet>  
+                    </h:panelGrid>  
+                      
+                </h:form>  
+            </p:dialog>              
+            
+            <script type="text/javascript">  
+                function handleLoginRequest(xhr, status, args) {  
+                    if(args.validationFailed) {  
+                        jQuery('#logindialog').effect("shake", { times:3 }, 100);  
+                    } else {  
+                        PF('loginDlg').hide();  
+                        jQuery('#loginLink').fadeOut();  
+                    }  
+                }  
+            </script>              
+        
+    </ui:composition>
+
+</html>

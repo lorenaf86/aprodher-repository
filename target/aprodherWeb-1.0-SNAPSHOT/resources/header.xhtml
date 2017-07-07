@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <p:tooltip for=":logoutform:logout" />
+    
+    <table style="width: 100%; border-bottom: thin; border-bottom-style: solid;">
+    
+        <tr valign="top" >
+            <td align="left" rowspan="2" >
+                <p:outputPanel autoUpdate="true">
+                    <h:graphicImage height="50%" width="50%"
+                             rendered="#{menuController.menuSelected}"
+                             value="/resources/gfx/aprodher/logoAprodher.jpg" /> 
+                 <h:graphicImage height="50%" width="50%"
+                             rendered="#{menuController.menuSelected}"
+                             value="/resources/gfx/aprodher/logoAprodher.jpg" /> 
+                </p:outputPanel>
+            </td>
+        </tr>
+            
+
+        <tr valign="middle" height="5" >
+            <td align="right" style="padding-right: 5px;" >
+                <h:form id="logoutform" >
+                <p:outputPanel autoUpdate="true" id="loginpanel" rendered="#{loggedIn}" >
+                    <h:panelGroup>
+                        #{bundle['login.username']}
+                        #{credentials.username}
+                        <!--  [ #{credentials.ipAddr} ] -->
+                        <p:commandButton id="logout" icon="ui-icon-power" 
+                                         ajax="false" action="#{loginController.logout}"
+                                      title="#{bundle['login.logout']}" />
+                    </h:panelGroup>
+                </p:outputPanel>
+                </h:form>
+            </td> 
+        </tr>
+    </table>
+
+    
+    <script type="text/javascript">  
+        function handleLoginRequest(xhr, status, args) {  
+            if(args.validationFailed) {  
+                jQuery('#logindialog').effect("shake", { times:3 }, 100);  
+            } else {  
+                PF('loginDlg').hide();  
+                //jQuery('#loginLink').fadeOut();  
+            }  
+        }  
+    </script>              
+            
+</ui:composition>

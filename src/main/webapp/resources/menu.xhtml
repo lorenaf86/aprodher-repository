@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <style type="text/css">
+        .menusperated {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+    </style>
+    
+    
+    <p:outputPanel autoUpdate="true">
+
+        <h:form id="menuform" style="width:100%;">
+           
+            <p:dock model="#{menuController.model}" position="bottom" rendered="#{loggedIn}" />
+
+            <p:outputPanel autoUpdate="true" style="width: 100%" rendered="false">
+                <p:menubar id="bar_mainmenu" >  
+                
+                    <p:menuitem id="mi-home" value="home" icon="ui-icon-home"
+                               url="/index.jsf" />  
+                    
+                    <p:submenu icon="ptiIcon" 
+                              label="#{bundle['label.about']}" >  
+                        <p:menuitem icon="ui-icon ui-icon-info"
+                                   value="#{bundle['label.about']}" url="#" 
+                                 onclick="PF('aboutPanel').show();" />  
+                    </p:submenu>  
+    
+                    <f:facet name="options">
+                        #{bundle['label.login.loggedAs']}
+                        #{credentials.username}
+                        <p:commandButton id="logout" icon="ui-icon-extlink" 
+                                      value="#{bundle['label.login.logout']}" ajax="false"  
+                                     action="logout" />
+                    </f:facet>  
+        
+                </p:menubar>  
+            </p:outputPanel>
+        
+        </h:form>
+    </p:outputPanel>
+    
+    <p:dialog header="#{bundle['label.about']}" draggable="true" 
+              widgetVar="aboutPanel" 
+              showEffect="fade" hideEffect="fade" resizable="false">
+        <h:form>
+            <p:spacer height="10px" />
+            <p:outputPanel autoUpdate="true">
+                <h:panelGrid columns="1" style="width:100%; text-align:center;">
+                    <p:graphicImage value="/resources/gfx/aprodher/logoAprodher.jpg" width="150"/>
+                    <h:outputText value="#{bundle['app.module.name']}" 
+                                  style="font-size:16px" />
+                    <h:outputText value="Version 1.0.0" />
+                </h:panelGrid>
+            </p:outputPanel>
+
+            <p:spacer height="10px" />
+            <h:panelGrid columns="2" rendered="false">
+                <h:outputText value="Processor" style="font-weight:bold" />
+                <h:outputText value="2.4 GHz Intel Core 2 Duo" />
+
+                <h:outputText value="Memory" style="font-weight:bold" />
+                <h:outputText value="8 GB 1033 MHz DDR3 " />
+
+                <h:outputText value="OS" style="font-weight:bold" />
+                <h:outputText value="CrunchBang Linux 11" />
+
+                <h:outputText value="developer" style="font-weight:bold" />
+                <h:outputText value="APRODHER" />
+                
+                <h:outputText value="sys-admin" style="font-weight:bold" />
+                <h:outputText value="www.aprodher.org.py" />
+                
+            </h:panelGrid>
+
+        </h:form>
+    </p:dialog>
+
+</ui:composition>

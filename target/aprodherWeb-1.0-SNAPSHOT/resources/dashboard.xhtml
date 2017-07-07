@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+  
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="pfcrud.css"/>
+        <h:outputScript library="scripts" name="pfcrud.js"/>
+               
+        <title>#{bundle['app.name']}::#{bundle['app.module']}.</title>
+        
+        <ui:insert name="head" />
+        
+        <!-- http://www.goat1000.com/tagcanvas.php  -->
+        <!--[if lt IE 9]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+        <h:outputScript library="scripts" name="tagcanvas.min.js" />
+
+    </h:head>
+    
+    <h:body style="background-image: url('#{resource['/gfx/background/ballerina_wallpaper4.jpeg']}'); background-repeat: no-repeat">
+    
+        <p:growl id="messages" autoUpdate="true" life="2000"/>
+
+        <ui:include src="/resources/header.xhtml" />
+    
+        <div id="center" style="width: 100%;">
+            <ui:insert name="content" />
+        </div>
+           
+        <ui:include src="/resources/menu.xhtml" />
+        
+    </h:body>
+    
+</html>
+
