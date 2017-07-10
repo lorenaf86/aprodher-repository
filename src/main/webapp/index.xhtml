@@ -44,7 +44,9 @@
                                                             oncomplete="handleLoginRequest(xhr, status, args)"/>  
                                     <p:commandLink id="regButton" value="#{bundle['btn.registrar']}" 
                                                  update=":messages :logoutform" 
-                                         action="#{loginController.register}" />  
+                                         action="#{usuarioController.prepareCreate}" 
+                                         oncomplete="PF('usuarioCreateDialog').show();"
+                                         />  
                                 </h:panelGrid>  
                                 </div>
                             </h:form>  
