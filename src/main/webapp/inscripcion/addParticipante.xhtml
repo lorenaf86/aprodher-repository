@@ -6,13 +6,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog id="addParticipanteCreateDlg" widgetVar="addParticipanteCreateDialog" 
+    <p:dialog id="inscripcionCreateDlg" widgetVar="inscripcionCreateDialog" 
             modal="true" resizable="false" appendTo="@(body)" 
-            header="#{bundle['btn.create']} #{bundle['label.persona']}">
+            header="#{bundle['btn.create']} #{bundle['label.inscripcion']}">
 
             <h:form id="addParticipanteCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{inscripcionController.participante != null}">
+                    <p:panelGrid columns="2" >
                        
                         <h:outputLabel value="#{bundle['label.persona']}"   for="profesorField"/>
                         <p:selectOneMenu id="profesorField"  style="width:260px" 
@@ -28,7 +28,7 @@
                         <f:facet name="footer">
                     		<p:commandButton actionListener="#{inscripcionController.addDetalle()}" 
                                                  value="#{bundle['btn.save']}" 
-                                                 update=":addParticipanteForm:datalistParticipante" 
+                                                 update=":inscripcionCreateForm:addParticipanteForm:datalistParticipante" 
                                                  oncomplete="handleSubmit(args,'addParticipanteCreateDlg', 'addParticipanteCreateDialog')"/>
                     		<p:commandButton value="#{bundle['btn.cancel']}" immediate="true" 
                                                  onclick="handleClose('addParticipanteCreateDlg')" />

@@ -3,18 +3,17 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:form id="addParticipanteForm">
 		<p:panel header="#{bundle['label.datos']} #{bundle['label.del']} #{bundle['label.participante']}"
-			style="height:280px">
+			style="height:240px;width:200px">
 			<p:menubar>
 				<p:menuitem id="addButton" icon="ui-icon-plus"
 					value="#{bundle['btn.add']}"
                                         actionListener="#{inscripcionController.nuevoDetalle()}"
 					oncomplete="PF('addParticipanteCreateDlg').show();"
-					update="inscripcionCreateForm:addParticipanteForm:addParticipanteCreateForm:display"
+					update=":inscripcionCreateForm:addParticipanteForm :inscripcionCreateForm:addParticipanteCreateForm:display"
 					process="@this" />
 
 			</p:menubar>
