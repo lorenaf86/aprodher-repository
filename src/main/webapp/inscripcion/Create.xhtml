@@ -15,7 +15,7 @@
         flowListener="#{inscripcionController.onFlowProcess}"
         nextLabel="#{bundle['label.next']}" backLabel="#{bundle['label.atras']}">
         <p:tab id="encabezado" title="#{bundle['label.encabezado']}">
-            <div style="height: 400px;">
+            <div style="height: 400px; width: 600px">
 		<ui:include src="resumenCab.xhtml" />
                 <p:outputPanel>
                         <ui:include src="addInscripcion.xhtml" />
@@ -23,9 +23,10 @@
             </div>
         </p:tab>
         <p:tab id="detalles" title="#{bundle['label.detalles']}">
-                <div style="height: 700px; overflow: scroll;">
+                <div style="height: 400px; overflow: scroll; width: 600px">
+                        <ui:include src="addParticipante.xhtml"/>
                         <p:outputPanel>
-                                <ui:include src="addParticipantes.xhtml" />
+                            <ui:include src="addParticipantes.xhtml"/>
                         </p:outputPanel>
                 </div>
         </p:tab>
@@ -36,7 +37,7 @@
                                 process="@this" 
                                 oncomplete="handleSubmit(args,'inscripcionCreateDlg', 'inscripcionCreateDialog')"/>
                 </p:menubar>
-                <div style="height: 320px; overflow: scroll;">
+                <div style="height: 380px; overflow: scroll; width: 600px">
                         <p:outputPanel>
                                 <ui:include src="resumen.xhtml" />
                         </p:outputPanel>
