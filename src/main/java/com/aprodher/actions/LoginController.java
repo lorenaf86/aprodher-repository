@@ -16,6 +16,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -51,10 +52,6 @@ public class LoginController extends LoginCheckerHelper implements Serializable 
      * Creates a new instance of loginController
      */
     public LoginController() {
-    }
-    
-    public String register() {
-	return "usuario/Create?faces-redirect=true";
     }
     
     public void validate(FacesContext context, UIComponent component,
@@ -178,7 +175,7 @@ public class LoginController extends LoginCheckerHelper implements Serializable 
         errorMessage = null;
         
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(AppHelper.getBundleMessage("logging.info.logout") + " " + credentials.getUsername()));
+        context.addMessage(null, new FacesMessage(ResourceBundle.getBundle("/Bundle").getString("login.salir") + " " + credentials.getUsername()));
         context.getExternalContext().getFlash().setKeepMessages(true);
         context.getExternalContext().invalidateSession();
         
