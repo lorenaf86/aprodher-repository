@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 
 
 @ViewScoped
@@ -36,6 +37,13 @@ public class UsuarioController extends AbstractController<Usuario> implements Se
         super.setService(service);
     }
     
+    public void prepareNew() {
+        super.prepareCreate();
+        
+//        this.setWizardTitle(this.selectedSolicitudConcepto.getNombre() + " (Agregar)");
+          RequestContext.getCurrentInstance().execute("PF('usuarioCreateDialog').show();");
+    }
+
     public void confirm(String accion){
         if(accion.equals("new")){
         	this.getSelected().setEstado("AC");
